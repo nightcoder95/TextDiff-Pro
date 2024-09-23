@@ -1,51 +1,57 @@
-"use client";
+'use client'
 
-import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import Image from "next/image";
-import Link from "next/link";
+import { useState, useEffect } from 'react'
+import { motion } from 'framer-motion'
+import Image from 'next/image'
+import Link from 'next/link'
+import { Github, Linkedin } from 'lucide-react'
 
 const developers = [
-    {
-        name: "Bharat Harikumar",
-        photo: "/dp.png",
-        profession: "Full Stack Developer",
-        contribution:
-        "Architectural design and implementation of Text Comparison Algorithm, leading performance optimization efforts, and developing scalable backend infrastructure",
-        },
-        {
-        name: "Anandhu Gopinath",
-        photo: "/anandhu.jpeg",
-        profession: "Full Stack Developer",
-        contribution:
-        "Co-developing Text Comparison Algorithm, optimizing frontend performance, and collaborating on backend development for seamless user experience",
-        },
-        {
-        name: "Abhijith Suresh",
-        photo: "/abhijit.png",
-        profession: "Frontend Developer",
-        contribution:
-        "Conceptualizing and designing the UI, driving project vision and direction, and leading idea management and requirements gathering",
-        },
-];
+  {
+    name: "Bharat Harikumar",
+    photo: "/dp.png",
+    profession: "Full Stack Developer",
+    contribution:
+      "Architectural design and implementation of Text Comparison Algorithm, leading performance optimization efforts, and developing scalable backend infrastructure",
+    github: "https://github.com/nightcoder95",
+    linkedIn: "https://www.linkedin.com/in/bharat-harikumar/",
+  },
+  {
+    name: "Anandhu Aji Gopinath",
+    photo: "/anandhu.jpeg",
+    profession: "Full Stack Developer",
+    contribution:
+      "Co-developing Text Comparison Algorithm, optimizing frontend performance, and collaborating on backend development for seamless user experience",
+    github: "https://github.com/CodeByAnandhu",
+    linkedIn: "https://www.linkedin.com/in/anandhu-aji-gopinath-a792b5122/",
+  },
+  {
+    name: "Abhijith Suresh",
+    photo: "/abhijit.png",
+    profession: "Developer",
+    contribution:
+      "Conceptualizing and designing the UI, driving project vision and direction, and leading idea management and requirements gathering",
+    linkedIn: "https://www.linkedin.com/in/abhijith-suresh-346a721a0/"
+  },
+]
 
 export default function AboutPage() {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
 
   useEffect(() => {
     const handleMouseMove = (e) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
+      setMousePosition({ x: e.clientX, y: e.clientY })
+    }
 
-    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener('mousemove', handleMouseMove)
 
     return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-    };
-  }, []);
+      window.removeEventListener('mousemove', handleMouseMove)
+    }
+  }, [])
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-900 text-white relative overflow-hidden">
+    <div className="h-full flex flex-col items-center justify-center bg-gray-900 text-white relative overflow-hidden">
       {/* Animated background */}
       <motion.div
         className="absolute inset-0 z-0"
@@ -60,14 +66,16 @@ export default function AboutPage() {
           className="text-5xl font-bold mb-6"
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}>
+          transition={{ duration: 0.8 }}
+        >
           About TextDiff Pro
         </motion.h1>
         <motion.p
           className="text-xl mb-12 max-w-2xl mx-auto"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}>
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
           Meet the talented developers behind TextDiff Pro, who have worked
           tirelessly to bring you the best text comparison tool.
         </motion.p>
@@ -79,7 +87,8 @@ export default function AboutPage() {
               className="bg-gray-800 rounded-lg p-6 shadow-lg"
               initial={{ opacity: 0, scale: 0.5 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.2 * index }}>
+              transition={{ duration: 0.5, delay: 0.2 * index }}
+            >
               <Image
                 src={dev.photo}
                 alt={dev.name}
@@ -89,7 +98,31 @@ export default function AboutPage() {
               />
               <h2 className="text-2xl font-bold mb-2">{dev.name}</h2>
               <p className="text-blue-400 mb-2">{dev.profession}</p>
-              <p className="text-gray-400">{dev.contribution}</p>
+              <p className="text-gray-400 mb-4">{dev.contribution}</p>
+              <div className="flex justify-center space-x-4">
+                {dev.github && (
+                  <a
+                    href={dev.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-white hover:text-blue-400 transition-colors"
+                  >
+                    <Github size={24} />
+                    <span className="sr-only">GitHub</span>
+                  </a>
+                )}
+                {dev.linkedIn && (
+                  <a
+                    href={dev.linkedIn}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-white hover:text-blue-400 transition-colors"
+                  >
+                    <Linkedin size={24} />
+                    <span className="sr-only">LinkedIn</span>
+                  </a>
+                )}
+              </div>
             </motion.div>
           ))}
         </div>
@@ -97,22 +130,25 @@ export default function AboutPage() {
         <motion.div
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, delay: 0.6 }}>
+          transition={{ duration: 0.5, delay: 0.6 }}
+        >
           <Link
             href="/"
-            className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full transition duration-300 ease-in-out transform hover:scale-105">
+            className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full transition duration-300 ease-in-out transform hover:scale-105"
+          >
             Back to Home
           </Link>
         </motion.div>
       </main>
 
       <motion.footer
-        className="absolute bottom-4 text-sm text-gray-400"
+        className="relative bottom-4 text-sm text-gray-400 mt-5"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 0.8 }}>
+        transition={{ duration: 1, delay: 0.8 }}
+      >
         © 2024 TextDiff Pro. All rights reserved.
       </motion.footer>
     </div>
-  );
+  )
 }
